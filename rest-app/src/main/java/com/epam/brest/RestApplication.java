@@ -9,16 +9,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-
-import java.util.Arrays;
+import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-public class RestApp extends SpringBootServletInitializer {
+@PropertySource({"classpath:dao.properties"})
+public class RestApplication extends SpringBootServletInitializer {
 
-    private static final Logger logger = LogManager.getLogger(RestApp.class);
+    private static final Logger logger = LogManager.getLogger(RestApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(RestApp.class, args);
+        SpringApplication.run(RestApplication.class, args);
     }
 
     @Bean
