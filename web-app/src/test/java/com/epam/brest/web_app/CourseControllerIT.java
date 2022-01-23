@@ -74,77 +74,77 @@ class CourseControllerIT {
         mockServer = MockRestServiceServer.createServer(restTemplate);
     }
 
-//    @Test
-//    void shouldReturnCoursesPage() throws Exception {
-//
-//        CourseDto d1 = createCourseDto(1, "JAVA1", BigDecimal.valueOf(3));
-//        CourseDto d2 = createCourseDto(2, "MAVEN2", BigDecimal.valueOf(2));
-//        CourseDto d3 = createCourseDto(3, "PHP3", null);
-//        mockServer.expect(ExpectedCount.once(), requestTo(new URI(COURSE_DTOS_URL)))
-//                .andExpect(method(HttpMethod.GET))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(Arrays.asList(d1, d2, d3)))
-//                );
-//
-//        mockMvc.perform(
-//                        MockMvcRequestBuilders.get("/courses")
-//                ).andDo(MockMvcResultHandlers.print())
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
-//                .andExpect(view().name("courses"))
-//                .andExpect(model().attribute("courses", hasItem(
+    @Test
+    void shouldReturnCoursesPage() throws Exception {
+
+        CourseDto d1 = createCourseDto(1, "JAVA1", BigDecimal.valueOf(3));
+        CourseDto d2 = createCourseDto(2, "MAVEN2", BigDecimal.valueOf(2));
+        CourseDto d3 = createCourseDto(3, "PHP3", null);
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(COURSE_DTOS_URL)))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(Arrays.asList(d1, d2, d3)))
+                );
+
+        mockMvc.perform(
+                        MockMvcRequestBuilders.get("/courses")
+                ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
+                .andExpect(view().name("courses"))
+                .andExpect(model().attribute("courses", hasItem(
+                        allOf(
+                                hasProperty("courseId", is(d1.getCourseId())),
+                                hasProperty("courseName", is(d1.getCourseName())),
+                                hasProperty("countStudent", is(d1.getCountStudent()))
+                        )
+                )))
+//                .andExpect(model().attribute("departments", hasItem(
 //                        allOf(
-//                                hasProperty("courseId", is(d1.getCourseId())),
-//                                hasProperty("courseName", is(d1.getCourseName())),
-//                                hasProperty("countStudent", is(d1.getCountStudent()))
+//                                hasProperty("departmentId", is(d2.getDepartmentId())),
+//                                hasProperty("departmentName", is(d2.getDepartmentName())),
+//                                hasProperty("avgSalary", is(d2.getAvgSalary()))
 //                        )
 //                )))
-////                .andExpect(model().attribute("departments", hasItem(
-////                        allOf(
-////                                hasProperty("departmentId", is(d2.getDepartmentId())),
-////                                hasProperty("departmentName", is(d2.getDepartmentName())),
-////                                hasProperty("avgSalary", is(d2.getAvgSalary()))
-////                        )
-////                )))
-////                .andExpect(model().attribute("departments", hasItem(
-////                        allOf(
-////                                hasProperty("departmentId", is(d3.getDepartmentId())),
-////                                hasProperty("departmentName", is(d3.getDepartmentName())),
-////                                hasProperty("avgSalary", isEmptyOrNullString())
-////                        )
-////                )))
-//        ;
-//
-//        mockServer.verify();
-//    }
-//    @Test
-//    void shouldAddCourse() throws Exception {
-//        // WHEN
-//        mockServer.expect(ExpectedCount.once(), requestTo(new URI(COURSES_URL)))
-//                .andExpect(method(HttpMethod.POST))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body("1")
-//                );
-//
-//        Course course = new Course("Java");
-//
-//        // THEN
-//        //Integer newDepartmentId = departmentService.create(department);
-//        mockMvc.perform(
-//                        MockMvcRequestBuilders.post("/course")
-//                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-//                                .param("courseName", course.getCourseName())
-//                ).andDo(MockMvcResultHandlers.print())
-//                .andExpect(status().is3xxRedirection())
-//                .andExpect(view().name("redirect:/courses"))
-//                .andExpect(redirectedUrl("/courses"));
-//
-//
-//        // VERIFY
-//        mockServer.verify();
-//    }
+//                .andExpect(model().attribute("departments", hasItem(
+//                        allOf(
+//                                hasProperty("departmentId", is(d3.getDepartmentId())),
+//                                hasProperty("departmentName", is(d3.getDepartmentName())),
+//                                hasProperty("avgSalary", isEmptyOrNullString())
+//                        )
+//                )))
+        ;
+
+        mockServer.verify();
+    }
+    @Test
+    void shouldAddCourse() throws Exception {
+        // WHEN
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(COURSES_URL)))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body("1")
+                );
+
+        Course course = new Course("Java");
+
+        // THEN
+        //Integer newDepartmentId = departmentService.create(department);
+        mockMvc.perform(
+                        MockMvcRequestBuilders.post("/course")
+                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                .param("courseName", course.getCourseName())
+                ).andDo(MockMvcResultHandlers.print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/courses"))
+                .andExpect(redirectedUrl("/courses"));
+
+
+        // VERIFY
+        mockServer.verify();
+    }
 
     @Test
     void shouldFailAddCourseOnEmptyName() throws Exception {
