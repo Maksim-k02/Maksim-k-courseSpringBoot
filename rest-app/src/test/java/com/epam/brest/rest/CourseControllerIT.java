@@ -49,6 +49,7 @@ public class CourseControllerIT {
     @Autowired
     private CourseController courseController;
 
+
     @Autowired
     private CustomExceptionHandler customExceptionHandler;
 

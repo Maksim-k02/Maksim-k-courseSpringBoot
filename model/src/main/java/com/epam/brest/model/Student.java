@@ -9,6 +9,17 @@ public class Student {
 
     private Integer courseId;
 
+    public Student() {
+    }
+
+    public Student(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public Student(Integer studentId, String firstName) {
+        this.studentId = studentId;
+        this.firstName = firstName;
+    }
 
     public Integer getStudentId() {
         return studentId;

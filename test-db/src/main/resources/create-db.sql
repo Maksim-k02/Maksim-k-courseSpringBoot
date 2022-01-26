@@ -10,8 +10,8 @@ CREATE TABLE course(
 
 CREATE TABLE student(
     student_id int NOT NULL auto_increment,
-    firstname varchar(255) NOT NULL,
-    lastname varchar(255) NOT NULL,
+    first_name varchar(255) NOT NULL,
+    last_name varchar(255) NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
     course_number int NOT NULL,
     course_id int NOT NULL,

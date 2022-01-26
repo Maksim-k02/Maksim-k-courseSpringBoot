@@ -23,6 +23,14 @@
     <bean id="courseService" class="com.epam.brest.service.impl.CourseServiceImpl">
         <constructor-arg name="courseDao" ref="courseDao"/>
     </bean>
+<!--Student bean-->
+    <bean id="studentDao" class="com.epam.brest.dao.StudentDaoJDBCImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="studentService" class="com.epam.brest.service.impl.StudentServiceImpl">
+        <constructor-arg name="studentDao" ref="studentDao"/>
+    </bean>
 
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
