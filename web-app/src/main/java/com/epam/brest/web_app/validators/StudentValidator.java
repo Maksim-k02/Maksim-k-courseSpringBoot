@@ -19,12 +19,12 @@ public class StudentValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors,"firstName", "firstName.empty");
+        ValidationUtils.rejectIfEmpty(errors,"studentName", "studentName.empty");
         Student student = (Student) target;
 
-        if (StringUtils.hasLength(student.getFirstName())
-                && student.getFirstName().length() > COURSE_NAME_SIZE) {
-            errors.rejectValue("firstName", "firstName.maxSize");
+        if (StringUtils.hasLength(student.getStudentName())
+                && student.getStudentName().length() > COURSE_NAME_SIZE) {
+            errors.rejectValue("studentName", "studentName.maxSize");
         }
     }
 }

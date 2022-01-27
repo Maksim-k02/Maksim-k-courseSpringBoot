@@ -37,7 +37,7 @@ public class StudentDaoJDBCImpl implements StudentDao {
 
     @Override
     public Integer create(Student student) {
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("firstName", student.getFirstName().toUpperCase());
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("studentName", student.getStudentName().toUpperCase());
         KeyHolder keyHolder =  new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sqlCreateStudent, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();
@@ -59,7 +59,7 @@ public class StudentDaoJDBCImpl implements StudentDao {
         public Student mapRow(ResultSet resultSet, int i) throws SQLException {
             Student student = new Student();
             student.setStudentId(resultSet.getInt("student_id"));
-            student.setFirstName(resultSet.getString("first_name"));
+            student.setStudentName(resultSet.getString("student_name"));
             return student;
         }
     }

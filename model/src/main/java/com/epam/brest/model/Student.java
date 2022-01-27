@@ -1,24 +1,49 @@
 package com.epam.brest.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+
 public class Student {
     private Integer studentId;
-    private String firstName;
-    private String lastName;
+    private String studentName;
     private String email;
     private Integer courseNumber;
 
     private Integer courseId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate studentDate;
+
     public Student() {
     }
 
-    public Student(String firstName) {
-        this.firstName = firstName;
+    public Student(String studentName) {
+        this.studentName = studentName;
     }
 
-    public Student(Integer studentId, String firstName) {
+    public Student(Integer studentId, String studentName) {
         this.studentId = studentId;
-        this.firstName = firstName;
+        this.studentName = studentName;
+    }
+
+    public Student(Integer studentId, String studentName, String email, Integer courseNumber, Integer courseId, LocalDate studentDate) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.email = email;
+        this.courseNumber = courseNumber;
+        this.courseId = courseId;
+        this.studentDate = studentDate;
+    }
+
+    public LocalDate getStudentDate() {
+        return studentDate;
+    }
+
+    public void setStudentDate(LocalDate studentDate) {
+        this.studentDate = studentDate;
     }
 
     public Integer getStudentId() {
@@ -29,20 +54,12 @@ public class Student {
         this.studentId = studentId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
     public String getEmail() {

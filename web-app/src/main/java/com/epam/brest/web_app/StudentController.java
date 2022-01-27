@@ -3,6 +3,7 @@ package com.epam.brest.web_app;
 
 
 import com.epam.brest.model.Student;
+import com.epam.brest.service.CourseService;
 import com.epam.brest.service.StudentService;
 
 import com.epam.brest.web_app.validators.StudentValidator;
@@ -20,9 +21,12 @@ public class StudentController {
 
     private final StudentValidator studentValidator;
 
-    public StudentController(StudentService studentService, StudentValidator studentValidator){
+    private final CourseService courseService;
+
+    public StudentController(StudentService studentService, StudentValidator studentValidator, CourseService courseService){
         this.studentService=studentService;
         this.studentValidator=studentValidator;
+        this.courseService = courseService;
     }
 
 
@@ -56,6 +60,7 @@ public class StudentController {
     public final String gotoAddStudentPage(Model model) {
         model.addAttribute("isNew", true);
         model.addAttribute("student", new Student());
+        model.addAttribute("courses",courseService.findAll());
         return "student";
     }
 
@@ -68,10 +73,10 @@ public class StudentController {
     @PostMapping(value = "/student")
     public String addStudent(Student student, BindingResult result) {
 
-        studentValidator.validate(student, result);
-        if (result.hasErrors()){
-            return "student";
-        }
+//        studentValidator.validate(student, result);
+//        if (result.hasErrors()){
+//            return "student";
+//        }
         this.studentService.create(student);
         return "redirect:/students";
     }

@@ -3,9 +3,9 @@ package com.epam.brest.model.dto;
 public class StudentDto {
     private Integer studentId;
 
-    private String firstName;
+    private String studentName;
 
-    private String lastName;
+
 
     private String email;
 
@@ -19,21 +19,14 @@ public class StudentDto {
         this.studentId = studentId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
+    public void setStudentName(final String studentName) {
+        this.studentName = studentName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getEmail() {
         return email;
@@ -55,15 +48,15 @@ public class StudentDto {
 
     }
 
-    public StudentDto(String firstName) {
-        this.firstName = firstName;
+    public StudentDto(String studentName) {
+        this.studentName = studentName;
     }
 
     @Override
     public String toString() {
         return "StudentDto{"
                 + "studentId=" + studentId
-                + ", firstName='" + firstName
+                + ", studentName='" + studentName
                 + '}';
     }
 }

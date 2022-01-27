@@ -58,17 +58,27 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form id="studentForm"
+                        th:object="${student}"
+                        action="students.html"
+                        >
+
+
                             <div class="mb-3">
                                 <label class="form-label"
                                        for="field_course">Course</label>
                                 <select class="form-control"
-                                        id="field_course">
-                                    <option value="0">CEO</option>
-                                    <option value="1">Accounting</option>
-                                    <option value="2">Java</option>
-                                    <option value="3">Testing</option>
-                                    <option value="4">People management</option>
+                                        id="field_course"
+                                        th:field="*{courseId}">
+                                    <option th:each="course : ${courses}"
+                                            th:value="${course.courseId}"
+                                            th:text="${course.courseName}">
+                                        Ivanov Ivan
+                                    </option>
+<!--                                    <option value="1">Accounting</option>-->
+<!--                                    <option value="2">Java</option>-->
+<!--                                    <option value="3">Testing</option>-->
+<!--                                    <option value="4">People management</option>-->
                                 </select>
                             </div>
                             <div class="mb-3">
