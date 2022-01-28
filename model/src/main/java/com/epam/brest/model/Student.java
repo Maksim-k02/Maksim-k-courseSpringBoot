@@ -29,8 +29,8 @@ public class Student {
         this.studentName = studentName;
     }
 
-    public Student(Integer studentId, String studentName, String email, Integer courseNumber, Integer courseId, LocalDate studentDate) {
-        this.studentId = studentId;
+    public Student(String studentName, String email, Integer courseNumber, Integer courseId, LocalDate studentDate) {
+
         this.studentName = studentName;
         this.email = email;
         this.courseNumber = courseNumber;

@@ -10,11 +10,11 @@ CREATE TABLE course(
 
 CREATE TABLE student(
     student_id int NOT NULL auto_increment,
-    first_name varchar(255) NOT NULL,
-    last_name varchar(255) NOT NULL,
+    student_name varchar(255) NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
     course_number int NOT NULL,
     course_id int NOT NULL,
+    student_date DATE NOT NULL,
         CONSTRAINT student_pk PRIMARY KEY (student_id),
         CONSTRAINT student_course_fk FOREIGN KEY (course_id) REFERENCES course(course_id)
 )

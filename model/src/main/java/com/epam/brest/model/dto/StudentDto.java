@@ -5,8 +5,6 @@ public class StudentDto {
 
     private String studentName;
 
-
-
     private String email;
 
     private Integer courseNumber;
@@ -57,6 +55,8 @@ public class StudentDto {
         return "StudentDto{"
                 + "studentId=" + studentId
                 + ", studentName='" + studentName
+                + ", email=" + email
+                + ", courseNumber=" + courseNumber
                 + '}';
     }
 }

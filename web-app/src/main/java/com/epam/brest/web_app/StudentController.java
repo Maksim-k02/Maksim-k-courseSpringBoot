@@ -38,6 +38,8 @@ public class StudentController {
      */
     @GetMapping(value = "/students")
     public final String students(Model model) {
+        model.addAttribute("courses", courseService.findAll());
+        model.addAttribute("students", studentService.findAll());
         return "students";
     }
 
@@ -48,6 +50,9 @@ public class StudentController {
      */
     @GetMapping(value = "/student/{id}")
     public final String gotoEditStudentPage(@PathVariable Integer id, Model model) {
+        model.addAttribute("isNew",false);
+        model.addAttribute("student", studentService.getStudentById(id));
+        model.addAttribute("courses", courseService.findAll());
         return "student";
     }
 
@@ -70,14 +75,37 @@ public class StudentController {
      * @param student new student with filled data.
      * @return view name
      */
-    @PostMapping(value = "/student")
-    public String addStudent(Student student, BindingResult result) {
 
-//        studentValidator.validate(student, result);
-//        if (result.hasErrors()){
-//            return "student";
-//        }
-        this.studentService.create(student);
+    @PostMapping(value = "/student")
+    public String addStudent(Student student, BindingResult result, Model model) {
+
+        studentValidator.validate(student, result);
+        if (result.hasErrors()){
+            model.addAttribute("isNew", true);
+            model.addAttribute("courses", courseService.findAll());
+            return "student";
+        } else {
+            this.studentService.create(student);
+        }
+        return "redirect:/students";
+    }
+
+    @PostMapping(value = "/student/{id}")
+    public String updateStudent(Student student, BindingResult result, Model model){
+        studentValidator.validate(student, result);
+        if (result.hasErrors()){
+            model.addAttribute("isNew", false);
+            model.addAttribute("courses", courseService.findAll());
+            return "student";
+        } else {
+            this.studentService.update(student);
+        }
+        return "redirect:/students";
+    }
+
+    @GetMapping(value = "/student/{id}/delete")
+    public final String deleteStudentById(@PathVariable Integer id, Model model) {
+        studentService.delete(id);
         return "redirect:/students";
     }
 }

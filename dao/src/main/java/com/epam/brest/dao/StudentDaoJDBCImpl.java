@@ -26,6 +26,15 @@ public class StudentDaoJDBCImpl implements StudentDao {
     @Value("${SQL_CREATE_STUDENT}")
     private String sqlCreateStudent;
 
+    @Value("${SQL_GET_STUDENT_BY_ID}")
+    private String sqlGetStudentById;
+
+    @Value("${SQL_UPDATE_STUDENT}")
+    private String sqlUpdateStudent;
+
+    @Value("${SQL_DELETE_STUDENT_BY_ID}")
+    private String sqlDeleteStudentById;
+
     public StudentDaoJDBCImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
         this.namedParameterJdbcTemplate= namedParameterJdbcTemplate;
     }
@@ -36,8 +45,18 @@ public class StudentDaoJDBCImpl implements StudentDao {
     }
 
     @Override
+    public Student getStudentById(Integer studentId) {
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("studentId",studentId);
+        return namedParameterJdbcTemplate.queryForObject(sqlGetStudentById,sqlParameterSource,new StudentRowMapper());
+    }
+
+    @Override
     public Integer create(Student student) {
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("studentName", student.getStudentName().toUpperCase());
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("studentName", student.getStudentName().toUpperCase())
+                .addValue("email",student.getEmail())
+                .addValue("courseNumber", student.getCourseNumber())
+                .addValue("courseId", student.getCourseId())
+                .addValue("studentDate", student.getStudentDate());
         KeyHolder keyHolder =  new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sqlCreateStudent, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();
@@ -45,12 +64,20 @@ public class StudentDaoJDBCImpl implements StudentDao {
 
     @Override
     public Integer update(Student student) {
-        return null;
+
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("studentId", student.getStudentId())
+                .addValue("studentName", student.getStudentName())
+                .addValue("email",student.getEmail())
+                .addValue("courseNumber", student.getCourseNumber())
+                .addValue("courseId", student.getCourseId())
+                .addValue("studentDate", student.getStudentDate());
+        return namedParameterJdbcTemplate.update(sqlUpdateStudent,sqlParameterSource);
     }
 
     @Override
     public Integer delete(Integer studentId) {
-        return null;
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("studentId", studentId);
+        return namedParameterJdbcTemplate.update(sqlDeleteStudentById, sqlParameterSource);
     }
 
     private class StudentRowMapper implements RowMapper<Student> {
