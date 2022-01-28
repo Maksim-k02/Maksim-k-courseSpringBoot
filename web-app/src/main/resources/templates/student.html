@@ -48,7 +48,8 @@
                    class="btn btn-light btn-block"><i class="bi-arrow-left"></i></a>
             </li>
         </ul>
-        <span class="navbar-brand text-uppercase me-auto">Edit student</span>
+        <span class="navbar-brand text-uppercase me-auto"
+              th:text="${isNew} ? 'New student' : 'Edit student'">Edit student</span>
     </nav>
 </header>
 
@@ -59,9 +60,18 @@
                 <div class="card">
                     <div class="card-body">
                         <form id="studentForm"
-                        th:object="${student}"
-                        action="students.html"
-                        >
+                            th:object="${student}"
+                            action="students.html"
+                            th:action="@{${#httpServletRequest.servletPath}}"
+                            th:method="@{post}">
+
+<!--                            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">-->
+<!--                                <p>Please fix errors below:</p>-->
+<!--                            </div>-->
+
+                            <input id="field_studentId"
+                                   type="hidden"
+                                   th:field="*{studentId}"/>
 
 
                             <div class="mb-3">
@@ -75,10 +85,6 @@
                                             th:text="${course.courseName}">
                                         Ivanov Ivan
                                     </option>
-<!--                                    <option value="1">Accounting</option>-->
-<!--                                    <option value="2">Java</option>-->
-<!--                                    <option value="3">Testing</option>-->
-<!--                                    <option value="4">People management</option>-->
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -87,7 +93,39 @@
                                 <input class="form-control"
                                        id="field_studentName"
                                        type="text"
-                                       value="Ivan Ivanov"/>
+                                       value="Ivan Ivanov"
+                                       th:field="*{studentName}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_studentName">Email</label>
+                                <input class="form-control"
+                                       id="field_email"
+                                       type="text"
+                                       value="ivanow@mail.ru"
+                                       th:field="*{email}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_studentName">Course number</label>
+                                <input class="form-control"
+                                       id="field_courseNumber"
+                                       type="number"
+                                       value=""
+                                       th:field="*{courseNumber}"/>
+
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_studentDate">Date of birth</label>
+                                <input class="form-control me-1 "
+                                       id="field_studentDate"
+                                       name="startLimitDate" type="date" aria-label="Date" autofocus required
+                                       th:field="*{studentDate}"/>
+<!--                                <div th:if="${#fields.hasErrors('studentDate')}"-->
+<!--                                     class="text-danger"-->
+<!--                                     th:errors="*{studentDate}">[errors]</div>-->
+
                             </div>
                             <div class="d-flex justify-content-end">
                                 <a href="students.html"
@@ -96,6 +134,7 @@
                                    title="Cancel">Cancel</a>
                                 <a href="students.html"
                                    th:href="@{/students}"
+                                   th:onclick="@{document.forms['studentForm'].submit(); return false;}"
                                    class="btn btn-primary"
                                    title="Save student">Save</a>
                             </div>
@@ -109,7 +148,7 @@
 
 <footer>
     <hr/>
-    <p class="text-center">&copy; 2021</p>
+    <p class="text-center">&copy; 2021 By Maksim Kusniarevich</p>
 </footer>
 
 <script src="../../resources/static/js/bootstrap.bundle.min.js"

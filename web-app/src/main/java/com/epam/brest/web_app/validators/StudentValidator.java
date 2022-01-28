@@ -8,7 +8,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import static com.epam.brest.model.constants.CourseConstants.COURSE_NAME_SIZE;
+
+import static com.epam.brest.model.constants.StudentConstants.EMAIL_SIZE;
 
 @Component
 public class StudentValidator implements Validator {
@@ -19,12 +20,17 @@ public class StudentValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors,"studentName", "studentName.empty");
+        ValidationUtils.rejectIfEmpty(errors, "email", "email.empty");
         Student student = (Student) target;
 
-        if (StringUtils.hasLength(student.getStudentName())
-                && student.getStudentName().length() > COURSE_NAME_SIZE) {
-            errors.rejectValue("studentName", "studentName.maxSize");
+        if (StringUtils.hasLength(student.getEmail())
+                && student.getEmail().length() > EMAIL_SIZE) {
+            errors.rejectValue("email", "email.maxSize");
+        }
+        if (student.getStudentDate() == null) {
+            errors.rejectValue("studentDate", "studentDate.empty");
         }
     }
+
+
 }

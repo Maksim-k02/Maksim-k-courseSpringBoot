@@ -20,14 +20,6 @@ public class Student {
     public Student() {
     }
 
-    public Student(String studentName) {
-        this.studentName = studentName;
-    }
-
-    public Student(Integer studentId, String studentName) {
-        this.studentId = studentId;
-        this.studentName = studentName;
-    }
 
     public Student(String studentName, String email, Integer courseNumber, Integer courseId, LocalDate studentDate) {
 
