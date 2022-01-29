@@ -76,7 +76,7 @@ public class CourseDaoJDBCImpl implements CourseDao{
         }
 
 
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("courseName", course.getCourseName().toUpperCase());
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("courseName", course.getCourseName());
         KeyHolder keyHolder =  new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sqlCreateCourse, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();

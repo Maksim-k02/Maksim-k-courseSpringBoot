@@ -11,7 +11,7 @@ CREATE TABLE course(
 CREATE TABLE student(
     student_id int NOT NULL auto_increment,
     student_name varchar(255) NOT NULL,
-    email varchar(255) NOT NULL UNIQUE,
+    email varchar(255) NOT NULL,
     course_number int NOT NULL,
     course_id int NOT NULL,
     student_date DATE NOT NULL,

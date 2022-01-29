@@ -56,10 +56,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     @Transactional
     public Integer delete(Integer studentId) {
-        try{
-            return  this.studentDao.delete(studentId);
-        } catch (EmptyResultDataAccessException e){
-            throw new StudentNotFoundException(studentId);
-        }
+        return this.studentDao.delete(studentId);
     }
 }

@@ -10,6 +10,7 @@ import com.epam.brest.web_app.validators.StudentValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +39,7 @@ public class StudentController {
      */
     @GetMapping(value = "/students")
     public final String students(Model model) {
-        model.addAttribute("courses", courseService.findAll());
+       model.addAttribute("courses", courseService.findAll());
         model.addAttribute("students", studentService.findAll());
         return "students";
     }
@@ -103,8 +104,14 @@ public class StudentController {
         return "redirect:/students";
     }
 
+    /**
+     * Delete student.
+     *
+     * @return view name
+     */
     @GetMapping(value = "/student/{id}/delete")
     public final String deleteStudentById(@PathVariable Integer id, Model model) {
+
         studentService.delete(id);
         return "redirect:/students";
     }

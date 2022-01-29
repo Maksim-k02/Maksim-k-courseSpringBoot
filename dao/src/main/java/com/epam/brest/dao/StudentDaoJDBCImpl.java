@@ -52,7 +52,7 @@ public class StudentDaoJDBCImpl implements StudentDao {
 
     @Override
     public Integer create(Student student) {
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("studentName", student.getStudentName().toUpperCase())
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("studentName", student.getStudentName())
                 .addValue("email",student.getEmail())
                 .addValue("courseNumber", student.getCourseNumber())
                 .addValue("courseId", student.getCourseId())
@@ -87,6 +87,10 @@ public class StudentDaoJDBCImpl implements StudentDao {
             Student student = new Student();
             student.setStudentId(resultSet.getInt("student_id"));
             student.setStudentName(resultSet.getString("student_name"));
+            student.setEmail(resultSet.getString("email"));
+            student.setCourseNumber(resultSet.getInt("course_number"));
+            student.setCourseId(resultSet.getInt("course_id"));
+            student.setStudentDate(resultSet.getDate("student_date").toLocalDate());
             return student;
         }
     }

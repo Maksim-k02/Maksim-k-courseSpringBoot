@@ -6,5 +6,6 @@ public class StudentConstants {
     /**
      * Maximum length of Email student.
      */
-    public static final int EMAIL_SIZE = 250;
+    public static final int EMAIL_SIZE = 50;
+    public static final int NAME_SIZE = 50;
 }

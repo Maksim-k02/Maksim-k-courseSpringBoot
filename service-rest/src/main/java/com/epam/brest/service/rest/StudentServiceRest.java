@@ -56,7 +56,7 @@ public class StudentServiceRest implements StudentService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<Student> entity =  new HttpEntity<>(headers);
-        ResponseEntity<Integer> result = restTemplate.exchange(url + "/" + studentId, HttpMethod.DELETE, entity,Integer.class);
+        ResponseEntity<Integer> result = restTemplate.exchange(url + "/" + studentId, HttpMethod.DELETE, entity, Integer.class);
         return result.getBody();
     }
 }

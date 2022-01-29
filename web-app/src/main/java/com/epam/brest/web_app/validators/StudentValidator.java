@@ -10,6 +10,7 @@ import org.springframework.validation.Validator;
 
 
 import static com.epam.brest.model.constants.StudentConstants.EMAIL_SIZE;
+import static com.epam.brest.model.constants.StudentConstants.NAME_SIZE;
 
 @Component
 public class StudentValidator implements Validator {
@@ -27,6 +28,15 @@ public class StudentValidator implements Validator {
                 && student.getEmail().length() > EMAIL_SIZE) {
             errors.rejectValue("email", "email.maxSize");
         }
+
+        if (StringUtils.hasLength(student.getStudentName())
+                && student.getStudentName().length() > NAME_SIZE) {
+            errors.rejectValue("studentName", "studentName.maxSize");
+        }
+        if (student.getCourseNumber()>6 || student.getCourseNumber()<1) {
+            errors.rejectValue("courseNumber", "courseNumber.size");
+        }
+
         if (student.getStudentDate() == null) {
             errors.rejectValue("studentDate", "studentDate.empty");
         }
