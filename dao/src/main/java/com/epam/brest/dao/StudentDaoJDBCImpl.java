@@ -20,6 +20,9 @@ public class StudentDaoJDBCImpl implements StudentDao {
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    @Value("${SELECT_COUNT_FROM_STUDENT}")
+    public String sqlStudentCount;
+
     @Value("${SQL_ALL_STUDENTS}")
     private String sqlGetAllStudent;
 
@@ -78,6 +81,11 @@ public class StudentDaoJDBCImpl implements StudentDao {
     public Integer delete(Integer studentId) {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource("studentId", studentId);
         return namedParameterJdbcTemplate.update(sqlDeleteStudentById, sqlParameterSource);
+    }
+
+    @Override
+    public Integer count() {
+        return namedParameterJdbcTemplate.queryForObject(sqlStudentCount, new MapSqlParameterSource(), Integer.class);
     }
 
     private class StudentRowMapper implements RowMapper<Student> {

@@ -11,5 +11,6 @@ public interface StudentDao {
     Integer create(Student student);
     Integer update(Student student);
     Integer delete(Integer studentId);
+    Integer count();
 
 }

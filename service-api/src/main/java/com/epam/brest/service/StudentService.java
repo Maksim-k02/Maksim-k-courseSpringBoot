@@ -10,4 +10,6 @@ public interface StudentService {
     Student getStudentById(Integer studentId);
     Integer update(Student student);
     Integer delete(Integer studentId);
+
+    Integer count();
 }

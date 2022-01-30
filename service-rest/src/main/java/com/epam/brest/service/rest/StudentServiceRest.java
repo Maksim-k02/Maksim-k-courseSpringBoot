@@ -59,4 +59,11 @@ public class StudentServiceRest implements StudentService {
         ResponseEntity<Integer> result = restTemplate.exchange(url + "/" + studentId, HttpMethod.DELETE, entity, Integer.class);
         return result.getBody();
     }
+
+    @Override
+    public Integer count() {
+
+        ResponseEntity<Integer> responseEntity = restTemplate.getForEntity(url + "/count" , Integer.class);
+        return responseEntity.getBody();
+    }
 }

@@ -58,4 +58,10 @@ public class StudentServiceImpl implements StudentService {
     public Integer delete(Integer studentId) {
         return this.studentDao.delete(studentId);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Integer count() {
+        return this.studentDao.count();
+    }
 }
