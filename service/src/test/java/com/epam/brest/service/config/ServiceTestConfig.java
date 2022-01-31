@@ -1,14 +1,13 @@
 package com.epam.brest.service.config;
 
 
-import com.epam.brest.dao.CourseDao;
-import com.epam.brest.dao.CourseDaoJDBCImpl;
-import com.epam.brest.dao.CourseDtoDao;
-import com.epam.brest.dao.CourseDtoDaoJdbc;
+import com.epam.brest.dao.*;
 import com.epam.brest.service.CourseDtoService;
 import com.epam.brest.service.CourseService;
+import com.epam.brest.service.StudentService;
 import com.epam.brest.service.impl.CourseDtoServiceImpl;
 import com.epam.brest.service.impl.CourseServiceImpl;
+import com.epam.brest.service.impl.StudentServiceImpl;
 import com.epam.brest.testdb.SpringJdbcConfig;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -34,5 +33,15 @@ public class ServiceTestConfig extends SpringJdbcConfig {
     @Bean
     CourseService courseService(){
         return new CourseServiceImpl(courseDao());
+    }
+
+    @Bean
+    StudentDao studentDao(){
+        return new StudentDaoJDBCImpl(namedParameterJdbcTemplate());
+    }
+
+    @Bean
+    StudentService studentService(){
+        return new StudentServiceImpl(studentDao());
     }
 }
