@@ -17,7 +17,7 @@ This web application to manage electives.
 mvn clean install
 ```
 ## Run project information ( coverage, dependency, etc. ):
-```
+
 To start Rest server (rest-app module):
 ```
 java -jar ./rest-app/target/rest-app-1.0-SNAPSHOT.jar
