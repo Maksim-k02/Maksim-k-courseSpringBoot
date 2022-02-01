@@ -1,3 +1,6 @@
+[![Java CI with Maven](https://github.com/Maksim-k02/Maksim-k-courseSpringBoot/actions/workflows/maven.yml/badge.svg)](https://github.com/Maksim-k02/Maksim-k-courseSpringBoot/actions/workflows/maven.yml)
+
+
 ### Brest Java Course 2021
 
 # Courses project
