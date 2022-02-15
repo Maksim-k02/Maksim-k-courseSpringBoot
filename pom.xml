@@ -24,6 +24,8 @@
 	<properties>
 		<java.version>11</java.version>
 		<spring-boot.version>2.6.1</spring-boot.version>
+		<springdoc-openapi-ui>1.5.2</springdoc-openapi-ui>
+		<springfox-swagger-ui.version>2.7.0</springfox-swagger-ui.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<spring.version>5.3.13</spring.version>
 		<log4j2.version>2.14.1</log4j2.version>
@@ -103,12 +105,12 @@
 				<artifactId>rest-app</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>${maven-failsafe-plugin.version}</version>
-				<scope>test</scope>
-			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-failsafe-plugin</artifactId>-->
+<!--				<version>${maven-failsafe-plugin.version}</version>-->
+<!--				<scope>test</scope>-->
+<!--			</dependency>-->
 
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -126,6 +128,23 @@
 				<artifactId>spring-boot-starter-test</artifactId>
 				<version>${spring-boot.version}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-validation</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-ui</artifactId>
+				<version>${springdoc-openapi-ui}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox-swagger-ui.version}</version>
 			</dependency>
 
 			<dependency>
