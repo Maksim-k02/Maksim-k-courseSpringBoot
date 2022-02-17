@@ -1,6 +1,8 @@
 package com.epam.brest;
 
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
@@ -22,15 +24,16 @@ public class RestApplication extends SpringBootServletInitializer {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-            logger.debug("Let's inspect the beans provided by Spring Boot:");
-//            String[] beanNames = ctx.getBeanDefinitionNames();
-//            Arrays.sort(beanNames);
-//            for (String beanName : beanNames) {
-////               logger.debug(beanName);
-//                System.out.println(beanName);
-//            }
-        };
+    public OpenAPI openAPIConfig(){
+        return new OpenAPI().info(apiInfo());
     }
+
+    public Info apiInfo(){
+        Info info = new Info();
+        info.title("Course CODE API")
+                .description("Course project Code System Swagger Open API")
+                .version("v1.0.0");
+        return info;
+    }
+
 }

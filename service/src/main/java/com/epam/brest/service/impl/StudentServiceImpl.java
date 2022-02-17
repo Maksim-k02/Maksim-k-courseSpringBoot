@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -63,5 +64,11 @@ public class StudentServiceImpl implements StudentService {
     @Transactional(readOnly = true)
     public Integer count() {
         return this.studentDao.count();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Student> filterStudentByBirthDate(LocalDate startDate, LocalDate endDate) {
+        return this.studentDao.filterStudentByBirthDate(startDate,endDate);
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -37,6 +38,9 @@ public class StudentDaoJDBCImpl implements StudentDao {
 
     @Value("${SQL_DELETE_STUDENT_BY_ID}")
     private String sqlDeleteStudentById;
+
+    @Value("${SQL_FIND_STUDENTS_BY_BIRTH_DATE}")
+    private String sqlFindStudentByBirthDate;
 
     public StudentDaoJDBCImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
         this.namedParameterJdbcTemplate= namedParameterJdbcTemplate;
@@ -86,6 +90,15 @@ public class StudentDaoJDBCImpl implements StudentDao {
     @Override
     public Integer count() {
         return namedParameterJdbcTemplate.queryForObject(sqlStudentCount, new MapSqlParameterSource(), Integer.class);
+    }
+
+    @Override
+    public List<Student> filterStudentByBirthDate(LocalDate startDate, LocalDate endDate) {
+
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("startDate", startDate).addValue("endDate", endDate);
+
+        return namedParameterJdbcTemplate.query(sqlFindStudentByBirthDate, sqlParameterSource, new StudentRowMapper());
     }
 
     private class StudentRowMapper implements RowMapper<Student> {

@@ -42,6 +42,7 @@
     <div class="container-fluid">
       <span class="navbar-brand text-uppercase">Students</span>
 
+
       <ul class="navbar-nav">
         <li class="nav-item">
           <a href="student.html"
@@ -96,24 +97,6 @@
                                 </span>
               </td>
 
-<!--              <td class="text-end">-->
-<!--                <a href="student.html"-->
-<!--                   th:href="@{|/student/${student.studentId}|}"-->
-<!--                   class="btn-sm btn-outline-secondary"-->
-<!--                   title="Edit student">-->
-<!--                  <i class="bi-pen"></i><span class="d-none d-md-inline">&nbsp;Edit</span></a>-->
-<!--                <span data-bs-toggle="modal" data-bs-target="#deleteDialog1"-->
-<!--                      th:attr="data-id=${student.studentId},-->
-<!--                                               data-name=${student.studentName},-->
-<!--                                               data-email=${student.email},-->
-<!--                                               data-course=${student.courseNumber},-->
-<!--                                               data-date=${student.studentDate}">-->
-<!--                                    <a href="#" class="btn-sm btn-outline-danger"-->
-<!--                                       title="Delete student"><i class="bi bi-trash"></i>-->
-<!--                                        <span class="d-none d-lg-inline">&nbsp;Delete</span>-->
-<!--                                    </a>-->
-<!--                                </span>-->
-<!--              </td>-->
             </tr>
             </tbody>
           </table>
@@ -124,6 +107,23 @@
 </section>
 
 <footer>
+  <div class="container-fluid">
+    <hr/>
+
+    <form class="col-4 col-sm-4 d-flex justify-content-center "
+          th:action="@{/students/filter}" th:method="get">
+      <input class="form-control me-1 "
+             name="startDate" type="date" aria-label="Date" autofocus required>
+      <input class="form-control me-1 "
+             name="endDate" type="date" aria-label="Date" autofocus required>
+      <button class="btn btn-light  text-nowrap" title="Filter" type="submit">
+        <span class="d-none d-lg-inline">Filter</span>
+      </button>
+    </form>
+
+  </div>
+
+
   <hr/>
   <p class="text-center">&copy; 2021</p>
 </footer>

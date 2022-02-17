@@ -4,6 +4,11 @@ package com.epam.brest.rest;
 import com.epam.brest.dao.CourseDaoJDBCImpl;
 import com.epam.brest.model.Course;
 import com.epam.brest.service.CourseService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -14,6 +19,7 @@ import java.util.Collection;
 
 
 @RestController
+@Tag(name="Course")
 public class CourseController {
 
     private static final Logger logger = LogManager.getLogger(CourseDaoJDBCImpl.class);
@@ -25,6 +31,10 @@ public class CourseController {
     }
 
     @GetMapping(value = "/courses")
+    @Operation(summary = "Get all courses", responses = {
+            @ApiResponse(description = "Get all course success", responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Course.class)))
+    })
     public final Collection<Course> courses() {
 
         logger.debug("courses()");
@@ -32,6 +42,10 @@ public class CourseController {
     }
 
     @GetMapping(value = "/courses/{id}")
+    @Operation(summary = "Get course", responses = {
+            @ApiResponse(description = "Get course success", responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Course.class)))
+    })
     public final Course getCourseById(@PathVariable Integer id){
 
         logger.debug("getCourseById({})", id);
@@ -40,6 +54,10 @@ public class CourseController {
     }
 
     @PostMapping(path = "/courses", consumes = "application/json", produces = "application/json")
+    @Operation(summary = "Create course", responses = {
+            @ApiResponse(description = "Created course success", responseCode = "200",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Course.class)))
+    })
     public ResponseEntity<Integer> createCourse(@RequestBody Course course) {
 
         logger.debug("createCourse({})", course);
@@ -48,6 +66,10 @@ public class CourseController {
     }
 
     @PutMapping(value = "/courses", consumes = {"application/json"}, produces = {"application/json"})
+    @Operation(summary = "Update course", responses = {
+            @ApiResponse(description = "Update course success", responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Course.class)))
+    })
     public ResponseEntity<Integer> updateCourse(@RequestBody Course course) {
 
         logger.debug("updateCourse({})", course);
@@ -56,6 +78,10 @@ public class CourseController {
     }
 
     @DeleteMapping(value = "/courses/{id}", produces = {"application/json"})
+    @Operation(summary = "Delete course", responses = {
+            @ApiResponse(description = "Delete course success", responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Course.class)))
+    })
     public ResponseEntity<Integer> deleteCourse(@PathVariable Integer id) {
 
         int result = courseService.delete(id);

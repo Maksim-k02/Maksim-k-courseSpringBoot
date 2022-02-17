@@ -2,10 +2,12 @@ package com.epam.brest.service.rest;
 
 import com.epam.brest.model.Student;
 import com.epam.brest.service.StudentService;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -65,5 +67,17 @@ public class StudentServiceRest implements StudentService {
 
         ResponseEntity<Integer> responseEntity = restTemplate.getForEntity(url + "/count" , Integer.class);
         return responseEntity.getBody();
+    }
+
+    @Override
+    public List<Student> filterStudentByBirthDate(LocalDate startDate, LocalDate endDate) {
+        ResponseEntity <List<Student>> responseEntity = restTemplate.exchange(
+                url + "/filter?startDate={startDate}&endDate={endDate}",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<>() {
+                },
+                startDate, endDate);
+        return  responseEntity.getBody();
     }
 }

@@ -45,9 +45,6 @@ public class CourseDaoJDBCImpl implements CourseDao{
     @Value("${SQL_DELETE_COURSE_BY_ID}")
     private String sqlDeleteCourseById;
 
-//    public CourseDaoJDBCImpl(DataSource dataSource){
-//        this.namedParameterJdbcTemplate= new NamedParameterJdbcTemplate(dataSource);
-//    }
 
     public CourseDaoJDBCImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
         this.namedParameterJdbcTemplate= namedParameterJdbcTemplate;

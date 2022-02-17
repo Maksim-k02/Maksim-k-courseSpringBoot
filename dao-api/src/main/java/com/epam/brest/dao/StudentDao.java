@@ -2,6 +2,7 @@ package com.epam.brest.dao;
 
 import com.epam.brest.model.Student;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface StudentDao {
@@ -12,5 +13,7 @@ public interface StudentDao {
     Integer update(Student student);
     Integer delete(Integer studentId);
     Integer count();
+
+    List<Student> filterStudentByBirthDate(LocalDate startDate, LocalDate endDate);
 
 }

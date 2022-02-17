@@ -2,6 +2,7 @@ package com.epam.brest.service;
 
 import com.epam.brest.model.Student;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface StudentService {
@@ -12,4 +13,6 @@ public interface StudentService {
     Integer delete(Integer studentId);
 
     Integer count();
+
+    List<Student> filterStudentByBirthDate(LocalDate startDate, LocalDate endDate);
 }
