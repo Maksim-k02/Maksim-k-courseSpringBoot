@@ -29,6 +29,7 @@
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<spring.version>5.3.13</spring.version>
 		<log4j2.version>2.14.1</log4j2.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<thymeleaf-spring5.version>3.0.12.RELEASE</thymeleaf-spring5.version>
 		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
@@ -46,21 +47,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-framework-bom</artifactId>
-				<version>${spring.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<type>pom</type>
-				<version>${spring-boot.version}</version>
-				<scope>import</scope>
-			</dependency>
 
 			<dependency>
 				<groupId>com.epam.brest</groupId>
@@ -105,6 +92,11 @@
 				<artifactId>rest-app</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.epam.brest</groupId>
+				<artifactId>web-app</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 <!--			<dependency>-->
 <!--				<groupId>org.apache.maven.plugins</groupId>-->
 <!--				<artifactId>maven-failsafe-plugin</artifactId>-->
@@ -116,6 +108,21 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
 				<version>${spring-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<type>pom</type>
+				<version>${spring-boot.version}</version>
+				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -173,6 +180,46 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>${spring-boot.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${build-helper-maven-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${maven-failsafe-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>integration-test</id>
+							<goals>
+								<goal>integration-test</goal>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
+						<runOrder>alphabetical</runOrder>
+						<reportsDirectory>${junit.itReportFolder}</reportsDirectory>
+						<includes>
+							<include>**/*IT*</include>
+						</includes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+					<configuration>
+						<reportsDirectory>${junit.utReportFolder}</reportsDirectory>
+						<excludes>
+							<exclude>**/*IT*</exclude>
+						</excludes>
+					</configuration>
 				</plugin>
 
 			</plugins>

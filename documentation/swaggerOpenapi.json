@@ -1,0 +1,397 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Course CODE API",
+    "description" : "Course project Code System Swagger Open API",
+    "version" : "v1.0.0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8087",
+    "description" : "Generated server url"
+  } ],
+  "paths" : {
+    "/students" : {
+      "get" : {
+        "tags" : [ "Student" ],
+        "summary" : "Get all students",
+        "operationId" : "students",
+        "responses" : {
+          "200" : {
+            "description" : "Get all students success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Student" ],
+        "summary" : "Update student",
+        "operationId" : "updateStudent",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Student"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Update student success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Student" ],
+        "summary" : "Create student",
+        "operationId" : "createStudent",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Student"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Create student success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/courses" : {
+      "get" : {
+        "tags" : [ "Course" ],
+        "summary" : "Get all courses",
+        "operationId" : "courses",
+        "responses" : {
+          "200" : {
+            "description" : "Get all course success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Course" ],
+        "summary" : "Update course",
+        "operationId" : "updateCourse",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Course"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Update course success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Course" ],
+        "summary" : "Create course",
+        "operationId" : "createCourse",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Course"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Created course success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/version" : {
+      "get" : {
+        "tags" : [ "Version" ],
+        "summary" : "Return version",
+        "operationId" : "version",
+        "responses" : {
+          "200" : {
+            "description" : "Return version success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/{id}" : {
+      "get" : {
+        "tags" : [ "Student" ],
+        "summary" : "Get student",
+        "operationId" : "getStudentById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Get student success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Student" ],
+        "summary" : "Delete student",
+        "operationId" : "deleteStudent",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Delete student success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/filter" : {
+      "get" : {
+        "tags" : [ "Student" ],
+        "summary" : "Filter student",
+        "operationId" : "filterStudentByBirthDate",
+        "parameters" : [ {
+          "name" : "startDate",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }, {
+          "name" : "endDate",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Filter student success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/courses/{id}" : {
+      "get" : {
+        "tags" : [ "Course" ],
+        "summary" : "Get course",
+        "operationId" : "getCourseById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Get course success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Course" ],
+        "summary" : "Delete course",
+        "operationId" : "deleteCourse",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Delete course success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/course-dtos" : {
+      "get" : {
+        "tags" : [ "Course DTO" ],
+        "summary" : "Find all and count student",
+        "operationId" : "courseDtos",
+        "responses" : {
+          "200" : {
+            "description" : "Find all and count student success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Course" : {
+        "type" : "object",
+        "properties" : {
+          "courseId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "courseName" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Student" : {
+        "type" : "object",
+        "properties" : {
+          "studentId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "studentName" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "courseNumber" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "courseId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "studentDate" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }
+      }
+    }
+  }
+}
