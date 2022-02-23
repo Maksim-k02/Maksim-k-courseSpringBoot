@@ -29,3 +29,7 @@ To start WEB application (web-app module):
 java -jar ./web-app/target/web-app-1.0-SNAPSHOT.jar
 The web application will be available at http://localhost:8084.
 ```
+
+Swagger UI: http://localhost:8087/swagger-ui.html
+The OpenAPI in JSON format: http://localhost:8087/v3/api-docs
+```
