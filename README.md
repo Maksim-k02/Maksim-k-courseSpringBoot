@@ -6,6 +6,7 @@
 # Courses project
 
 This web application to manage electives.
+More information about the project in the documentation folder.
 
 ## Requirements
 
