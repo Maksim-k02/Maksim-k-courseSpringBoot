@@ -5,7 +5,7 @@
 
 # Courses project
 
-This web application to manage electives.
+This application is designed to organize courses and enroll students in these courses. You can view add new courses, view and add students and sort students by date of birth.
 More information about the project in the documentation folder.
 
 ## Requirements
